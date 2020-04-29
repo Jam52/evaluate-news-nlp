@@ -1,2 +1,12 @@
 node_modules
 dist
+
+#ignor .env file
+*.env
+
+#ignor everything in the node_modules folder
+node_modules/**
+
+#ignor everything in the dist folder
+dist/**
+

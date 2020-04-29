@@ -3,14 +3,48 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    checkForName(formText)
+    const validUrl = Client.checkForUrl(formText);
 
-    console.log("::: Form Submitted :::")
-    fetch('http://localhost:8080/test')
-    .then(res => res.json())
-    .then(function(res) {
-        document.getElementById('results').innerHTML = res.message
-    })
+    if(validUrl) {
+        console.log("::: Form Submitted :::")
+        console.log(formText);
+        postData('/all', {url: formText});
+    }
+
 }
+
+
+
+const getClassification = async (url='') => {
+    const request = await fetch(url);
+    try {
+        const allData = await request.json()
+        console.log('getData');
+        console.log(allData);
+        return allData;
+    } catch(e) {
+        console.log("getData error: ", e);
+    };
+}
+
+const postData = async (url='', data={}) => {
+    const response = await fetch(url, {
+        method: 'POST', 
+        credentials: 'same-origin', 
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),      
+      });
+
+      try {
+        const newData = await response.json();
+        return newData;
+      }catch(error) {
+      console.log("error", error);
+      }
+}
+
+
 
 export { handleSubmit }
