@@ -8,11 +8,11 @@ function handleSubmit(event) {
     if(validUrl) {
         console.log("::: Form Submitted :::")
         console.log(formText);
-        postData('/all', {url: formText});
+        postData('/all', {url: formText})
+        .then(getClassification('/all'))
     }
 
 }
-
 
 
 const getClassification = async (url='') => {
