@@ -8,17 +8,31 @@
     <body>
 
         <header>
-            <div class="">
+            <div class="logo">
                 Logo
             </div>
-            <div class="">
-                navigation
-            </div>
+            
         </header>
 
         <main>
             <section>
+                <h1 class="header">Sentinment</h1>
+                <p class="explination">Enter a link or some text to see its sentiment and subjectivity</p>
+            </section>
+            <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
+                    <ul class="radio">
+                        <li>
+                            <input id="url" type="radio" name="radio" id="url" value="url" checked class="checked">
+                            <label for="url">URL</label>
+                        </li>
+                        <li>
+                            <input id="text" type="radio" name="radio" id="text" value="text">
+                            <label for="text">TEXT</label>
+                        </li>
+                    </ul>
+
+                
                     <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
                     <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>

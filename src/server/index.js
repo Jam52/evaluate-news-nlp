@@ -40,28 +40,28 @@ app.listen(8081, function () {
 })
 
 // use api and GET data
-app.get('/all', function (req, res) {
-    console.log(formData.url)
-
-    try {
-      textApi.sentiment({'url': formData.url}, function(error, response) {
-        console.log(error);
-        if (error === null) {
-          console.log('IN_API_CALL '+ response);
-          res.send(response)
-        }
-      });
-    } catch(e) {
-        console.log(e);
-    }
-})
+app.get('/all', apiCall) 
 
 
 // POST url to formData
-app.post('/all', (res,req) => {
-  console.log(res.body)
-  formData.url = res.body.url;
+app.post('/all', (req,res) => {
+  console.log(req.body)
+  formData.url = req.body.url;
 })
 
 
 
+//API callback function
+function apiCall (req , res) {
+  try {
+    textApi.sentiment({'url': formData.url}, function(error, response) {
+      console.log(error);
+      if (error === null) {
+        console.log('IN_API_CALL '+ response);
+        res.send(response)
+      }
+    });
+  } catch(e) {
+      console.log(e);
+  }
+}

@@ -3,9 +3,10 @@ function handleSubmit(event) {
 
     // check what text was put into the form field
     let formText = document.getElementById('name').value
-    const validUrl = Client.checkForUrl(formText);
+    const urlRadioSelected = document.getElementById('url').checked;
+    const textRadioSelected = document.getElementById('text').checked;
 
-    if(validUrl) {
+    if(Client.checkForUrl(formText)) {
         console.log("::: Form Submitted :::")
         console.log(formText);
         postData('/all', {url: formText})
