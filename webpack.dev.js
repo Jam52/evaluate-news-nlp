@@ -1,7 +1,7 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebPackPlugin = require("html-webpack-plugin")
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
@@ -12,19 +12,26 @@ module.exports = {
         port: 8080
     },
     output: {
+        filename: '[name].index.js',
+        path: path.resolve(__dirname, './dist'),
+        publicPath: '/',
         libraryTarget: 'var',
         library: 'Client'
     },
     module: {
         rules: [
             {
-                test: '/\.js$/',
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
             },
             {
                 test: /\.scss$/i,
                 use: ['style-loader', 'css-loader', 'sass-loader']
+            },
+            {
+                test: /\.(png|jpg)$/i,
+                use: [{loader:'file-loader'}]
             }
         ]
     },

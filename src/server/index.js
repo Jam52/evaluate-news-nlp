@@ -1,5 +1,5 @@
 //incoming formData endpoint
-const formData = {};
+const data = {};
 
 //set up dotenv for credential files
 const dotEnv = require('dotenv')
@@ -15,7 +15,7 @@ const bParser = require('body-parser');
 const cor = require('cors')
 
 //use dependencies and middlewear
-app.use(express.static('dist'));
+app.use(express.static('./dist'));
 app.use(bParser.urlencoded({extended: false}));
 app.use(bParser.json());
 app.use(cor());
@@ -30,7 +30,7 @@ var textApi = new AYLIENTextApi({
 
 //get entry index
 app.get('/', function (req, res) {
-  res.sendFile(path.resolve('src/client/views/index.html'))
+  res.sendFile(path.resolve('dist/index.html'))
 });
 
 
@@ -46,22 +46,37 @@ app.get('/all', apiCall)
 // POST url to formData
 app.post('/all', (req,res) => {
   console.log(req.body)
-  formData.url = req.body.url;
+  data.data = req.body.data;
+  data.type = req.body.type;
 })
 
 
 
 //API callback function
 function apiCall (req , res) {
-  try {
-    textApi.sentiment({'url': formData.url}, function(error, response) {
-      console.log(error);
-      if (error === null) {
-        console.log('IN_API_CALL '+ response);
-        res.send(response)
-      }
-    });
-  } catch(e) {
-      console.log(e);
-  }
+  if(data.type === 'url'){
+    try{
+      textApi.sentiment({'url': data.data}, function(error, response) {
+        console.log(error);
+        if (error === null) {
+          console.log('IN_API_CALL '+ response);
+          res.send(response)
+        }
+      });
+    } catch(e) {
+        console.log(e);
+    }
+  } else {
+    try{
+      textApi.sentiment({'text': data.data}, function(error, response) {
+        console.log(error);
+        if (error === null) {
+          console.log('IN_API_CALL '+ response);
+          res.send(response)
+        }
+      });
+    } catch(e) {
+        console.log(e);
+    }
+  } 
 }
