@@ -31,15 +31,14 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
             },
             {
-                test: /\.(png|jpg)$/,
-                use: [
-                    {
-                      loader: 'url-loader',
-                      options: {
-                        limit: Infinity,
-                      },
-                    },
-                ],
+                test: /\.(png|jp(e*)g|svg)$/,  
+                use: [{
+                    loader: 'url-loader',
+                    options: { 
+                        limit: 8000,
+                        name: 'images/[hash]-[name].[ext]'
+                    } 
+                }]
             }
         ]
     },

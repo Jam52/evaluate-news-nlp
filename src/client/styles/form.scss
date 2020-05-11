@@ -1,55 +1,37 @@
+@use 'base';
+
 form {
-    background-color: lightgrey;
-    border-radius: 10px;
+    background-color: #353b48;
+    border-radius: 2px;
     padding: 40px;
     display: grid;
     grid-gap: 20px;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
 
+    #submit {
+      background-color: #e1b12c;
+      font-family:  'Ubuntu', sans-serif;
+      font-size: 1em;
+      border-style: none;
+      padding: 10px 0px;
+      color: #FFF;
+      box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background-color: #f1cb62;
+      }
+
+      &:active {
+        background-color: #dcdde1;
+        transform: translateY(3px);
+        
+      }
+    }
+
+    #name {
+      padding: 10px;
+    } 
 }
 
 
-.radio {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  margin: auto -10px;
-  gap: 10px;
-
-  li {
-    display: inline-block;
-    margin: 0 10px;;
-    width: 100%;
-    position: relative;
-    text-align: center;
-  }
-
-  label,
-  input {
-    display: block;
-    width: 100%;
-  }
-
-  input[type="radio"] {
-    opacity: 0.01;
-    z-index: 100;
-    height: 0px;
-  }
-
-  input[type="radio"]:checked+label{
-  background: yellow;
-  }
-
-  label {
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 90;
-  }
-
-  label:hover {
-    background: #DDD;
-  }
-
-}

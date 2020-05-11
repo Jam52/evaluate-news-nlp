@@ -1,41 +1,59 @@
-const addImg = require('./addImg');
-
 function handleSubmit(event) {
     event.preventDefault()
 
     // check what text was put into the form field
-    let formText = document.getElementById('name').value
-    const urlRadioSelected = document.getElementById('url').checked;
+    let formText = document.getElementById('name').value;
+    const resultMsg = document.getElementById('result_message');
 
-    if(urlRadioSelected) {
+    //if form has text run 
+    if(formText.length > 0) {
+        //if text is a url
         if (Client.checkForUrl(formText)){
+            resultMsg.textContent = 'Calculating subjectivity!';
             try {
                 console.log("::: URL Form Submitted :::")
                 console.log(formText);
-                postData('/all', {data: formText, type: "url"})
-                .then(updateUI()) 
+                postData('/all', {data: addHttp(formText), type: "url"})
+                .then(updateUI('URL')) 
             } catch(e) {
                 console.log('error: ' + e)
-                document.getElementById('result_message').textContent = 'Invalid Url';
             }
         } else {
-            console.log("::: TEXT Form Submitted :::")
-            console.log(formText);
-            postData('/all', {data: formText, type: "text"})
-            .then(updateUI())
+            //if not a url check against text
+            resultMsg.textContent = 'Calculating subjectivity!';
+            try {
+                console.log("::: TEXT Form Submitted :::")
+                console.log(formText);
+                postData('/all', {data: formText, type: "text"})
+                .then(updateUI('TEXT'))
+            } catch(e) {
+                console.log(e);
+            }
         }
+    } else {
+        resultMsg.textContent = 'Please enter some input';
     }
 
 }
 
-async function updateUI() {
-    const data = await getClassification('/all');
-    const sentimentImg = document.getElementById('sentiment');
-    const subjectivityImg = document.getElementById('subjectivity');
-    Client.addImg.setImg(sentimentImg, await data.polarity, Client.addImg.getImg(await data.polarity));
-    Client.addImg.setImg(subjectivityImg, await data.subjectivity, Client.addImg.getImg(await data.subjectivity), 'subjectivity');
+//Update the up with the data from GET request
+async function updateUI(msg) {
+    try {
+        const data = await getClassification('/all');
+        const sentiment = await data.polarity;
+        const subjectivity = await data.subjectivity;
+        if ('error' in await data) {
+            document.getElementById('result_message').textContent = 'Invalid Input'
+        } else {
+            document.getElementById('result_message').textContent = `The ${msg.toUpperCase()} sentiment is ${sentiment.toUpperCase()} and the subjectivity is ${subjectivity.toUpperCase()}`;
+        }
+    } catch(e) {
+        console.log('update error: ' + e)
+        resultMsg.textContent = 'Invalid Input';
+    }
 }
 
+//GET request
 const getClassification = async (url='') => {
     const request = await fetch(url);
     try {
@@ -48,6 +66,7 @@ const getClassification = async (url='') => {
     };
 }
 
+//POST request 
 const postData = async (url='', data={}) => {
     const response = await fetch(url, {
         method: 'POST', 
@@ -66,4 +85,17 @@ const postData = async (url='', data={}) => {
       }
 }
 
-export { handleSubmit }
+//adding http for API call
+function addHttp(input) {
+    const reg = new RegExp("^(http|https)://", "i");
+    if(input.match(reg)) {
+        return input;
+    } else {
+        return 'http://' + input;
+    }
+}
+
+export { 
+    handleSubmit,
+    addHttp
+ }

@@ -1,17 +1,38 @@
-
+$font-main:  'Ubuntu', sans-serif;
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: $font-main;
+    text-align: center;
+    
+}
+
+h1 {
+    font-family: 'Lora', serif;
+    padding: 0 0 40px 0;
+    font-size: 3em;
 }
 
 main {
     flex: 2;
+    background-color: #dcdde1;
 }
 
 section {
     max-width: 700px;
     width: 90vw;
-    margin: 50px auto;
+    margin: 20px auto 20px auto;
+    
+}
+
+.form_results {
+    strong {
+        font-size: 1.5em;
+        
+    }
+    font-size: 1.5em;
+    color: #e1b12c;
+    font-style: italic;
 }

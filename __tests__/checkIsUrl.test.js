@@ -1,16 +1,16 @@
 import {is_url} from '../src/client/js/nameChecker.js';
-import { response } from 'express';
+import {addHttp} from '../src/client/js/formHandler.js';
 
-
-test("if is a valid Url", () => {
+//unit test for URL unput
+test("testing result of URL input", () => {
     expect(is_url('https://www.abc123.com')).toBeTruthy();
-}); 
-
-test("if is not a valid Url", () => {
     expect(is_url('.www.346/23@')).toBeFalsy();
-}); 
-
-test("if is Null", () => {
     expect(is_url('')).toBeNull();
 }); 
+
+
+test("if adds http://", () => {
+    const url = "www.url.com"
+    expect(addHttp(url).toBe("http://www.url.com"));
+})
 

@@ -3,54 +3,44 @@
     <head>
         <meta charset="utf-8">
         <title>Evaluate</title>
+        <link href="https://fonts.googleapis.com/css2?family=Lora:wght@500&family=Ubuntu&display=swap" rel="stylesheet">
     </head>
 
     <body>
 
         <header>
             <div class="logo">
-                Logo
+                <img id="logo" height='200px' width='200px'>
             </div>
             
         </header>
 
         <main>
             <section>
-                <h1 class="header">Sentinment</h1>
-                <p class="explination">Enter a link or some text to see its sentiment and subjectivity</p>
+                <h1 class="header">Sentinment Evaluator</h1>
+                <p class="explination">Enter a link or some text to discover its sentiment and subjectivity</p>
             </section>
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <ul class="radio">
-                        <li>
-                            <input id="url" type="radio" name="radio" id="url" value="url" checked class="checked">
-                            <label for="url">URL</label>
-                        </li>
-                        <li>
-                            <input id="text" type="radio" name="radio" id="text" value="text">
-                            <label for="text">TEXT</label>
-                        </li>
-                    </ul>
-
-                
-                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                    <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="Enter text or Url">
+                    <input id="submit" type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             <section>
 
-            <section>
+            <section class="form_results">
                 <strong>Form Results:</strong>
-                <p id="result_message"></p>
-                <div id="sentiment">
-                    <img id="sentiment" src="./img/img-no-result.jpg" alt="no-result">
-                <div id="subjectivity">
-                    <img id="subjectivity" src="./img/img-no-result.jpg"  alt="no-result">
+                <div class="output">
+                    <br>
+                    <p id="result_message">Awaiting Input</p>
                 </div>
             </section>
         </main>
 
         <footer>
-            <p>This is a footer</p>
+            <p class="footer-name">Jamie Sajdak</p>
+            <a href="mailto:jamie.sajdak@gmail.com"><p>jamie.sajdak@gmail.com</p></a>
+            <p class="footer-local">Toronto, ON</p>
+            <a href="tel:647-465-4864"><p>cel:647 465 4864</p></a>
         </footer>
 
     </body>

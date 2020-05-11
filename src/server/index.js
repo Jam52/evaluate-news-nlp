@@ -61,10 +61,13 @@ function apiCall (req , res) {
         if (error === null) {
           console.log('IN_API_CALL '+ response);
           res.send(response)
+        } else {
+          res.send({error: 'Invalid Input'})
         }
       });
     } catch(e) {
         console.log(e);
+        res.send({error: 'Invalid Input'})
     }
   } else {
     try{
