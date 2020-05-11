@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "jest --detectOpenHandles",
     "start": "node src/server/index.js",
     "build": "webpack --config webpack.prod.js",
     "dev": "webpack-dev-server  --config webpack.dev.js --open"
@@ -27,6 +27,7 @@
     "@babel/plugin-transform-runtime": "^7.9.6",
     "@babel/preset-env": "^7.9.6",
     "babel-loader": "^8.0.6",
+    "babel-polyfill": "^6.26.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
@@ -35,6 +36,7 @@
     "lodash": "^4.17.15",
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.0",
+    "puppeteer": "^3.0.4",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
     "source-map-loader": "^0.2.4",
