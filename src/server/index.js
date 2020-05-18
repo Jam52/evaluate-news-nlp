@@ -1,6 +1,9 @@
 //incoming formData endpoint
 const data = {};
 
+//setting port with heroku
+const PORT = process.env.PORT || 5000;
+
 //set up dotenv for credential files
 const dotEnv = require('dotenv')
 dotEnv.config();
@@ -35,7 +38,7 @@ app.get('/', function (req, res) {
 
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
+app.listen(PORT, function () {
     console.log('Example app listening on port 8081!')
 })
 
