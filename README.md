@@ -1,6 +1,6 @@
 # Semantically Evaluate Text/Url using Alyien
 
-This project is a single page web application, part of the Front End Web Development cource from [Udacity](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd0011).
+This project is a single page web application, part of the Front End Web Development course from [Udacity](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd0011).
 
 It uses the semantic endpoint of [aylien](https://aylien.com/) API to return the polarity and subjectivity of the data given.
 
@@ -66,13 +66,13 @@ npm start
 
 7. Open brower at http://localhost:8080/
 
-### Hosting
+## Hosting
 
 Hosted on [heroku](https://www.heroku.com/)
 
 [View Site](https://vast-anchorage-24801.herokuapp.com/)
 
-### Contact
+## Contact
 
 Jamie Sajdak - jamie.sajdak@gmail.com
 
